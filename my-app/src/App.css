@@ -12,6 +12,9 @@
     color: #ffffff;
   }
   
+  .App2{
+    justify-self: center;
+  }
   button {
     display: flex;
     flex-direction: row-reverse;

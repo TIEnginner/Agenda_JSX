@@ -1,48 +1,40 @@
-import React, { useState, useEffect } from 'react';
+import React, {useEffect } from 'react';
 import './App.css';
 
 function App() {
-  <form>
-    <div class="flex flex-col justify-center">
-        <h1 class="text-gray-100 text-3xl">Agendamento de consultas</h1>
-        <input class="text-gray-700 text-2xl" placeholder="Digite seu nome:"></input>
-        <input class="text-gray-700 text-2xl" type='number' placeholder="Digite seu telefone:"></input>
-        <input class="text-gray-700 text-2xl" type='time' placeholder="Hora da consulta:"></input>
-      </div>
-  </form>
-
-  // Verifica o tema no localStorage ou usa 'false' como padrão
-  const savedTheme = localStorage.getItem('darkMode') === 'true';
-  const [isDarkMode, setIsDarkMode] = useState(savedTheme);
-
-  // Função para alternar entre os modos
-  const toggleDarkMode = () => {
-    const newMode = !isDarkMode;
-    setIsDarkMode(newMode);
-    localStorage.setItem('darkMode', newMode); // Salva a preferência no localStorage
-  };
-
-  // Adiciona ou remove a classe do tema no body da página
   useEffect(() => {
-    if (isDarkMode) {
-      document.body.classList.add('dark-mode');
-      document.body.classList.remove('light-mode');
-    } else {
-      document.body.classList.add('light-mode');
-      document.body.classList.remove('dark-mode');
-    }
-  }, [isDarkMode]);
+    // Garantir que a classe 'dark-mode' seja sempre aplicada no carregamento
+    document.body.classList.add('dark-mode');
+  }, []);
+
 
   return (
-    <div className="App">
-      <button onClick={toggleDarkMode}>
-        <span className="material-icons">
-          {isDarkMode ? 'light_mode' : 'dark_mode'}
-        </span>
-        {isDarkMode ? ' Modo Claro' : ' Modo Escuro'}
-      </button>
+    <div className="App2">
+      {/* Formulário */}
+      <form>
+          <h1 id='01' className="flex flex-row justify-center text-blue-600 text-5xl">Agendamento de consultas</h1>
+          <p className='flex flex row justify-center text-red-500'>\!/
+          </p>
+          <div className="flex flex-col justify-center container">
+          <input className="bg-blue-600 text-gray-900 text-2xl" placeholder="Digite seu nome:" />
+          <p>\!/
+          </p>
+          <input className="bg-blue-600 text-gray-900 text-2xl" type="number" placeholder="Digite seu telefone:" />
+          <p>\!/
+          </p>
+          <input className="bg-blue-600 text-gray-900 text-2xl" type="time" placeholder="Data da consulta:" />
+          <p>\!/
+          </p>
+          <input type='date' className='bg-blue-600' placeholder='Data da consulta:' />
+          <p>\!/
+          </p>
+          <button type='submit' className="bg-blue-500 hover:bg-blue-700 justify-center">
+            Send
+          </button>
+          </div>
+      </form>
     </div>
   );
 }
-    
+
 export default App;
