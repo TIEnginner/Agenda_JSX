@@ -7,6 +7,41 @@ function App() {
     document.body.classList.add('dark-mode');
   }, []);
 
+  function enviarDados(event) {
+
+    // Coleta os dados do formulário
+    const dados = {
+        nome: document.getElementById('pacient').value,
+        telefone: document.getElementById('number').value,
+        hora: document.getElementById('hour').value,
+        data: document.getElementById('day').value,
+        descrição: document.getElementById('motivo').value,
+    };
+
+    const jsonDados = JSON.stringify(dados);
+    console.log("Dados enviados:", jsonDados);
+
+    fetch('http://localhost:8000/enviar', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: jsonDados,
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Erro na resposta do servidor');
+        }
+        return response.json();
+    })
+    .then(data => {
+        console.log('Resposta do servidor:', data);
+    })
+    .catch(error => {
+        console.error('Erro ao enviar dados:', error);
+    });
+}
+
   // Estados para os inputs
   const [pacient, setPacient] = useState('');
   const [motivo, setMotivo] = useState('');
@@ -14,25 +49,11 @@ function App() {
   const [hour, setHour] = useState('');
   const [day, setDay] = useState('');
 
-  // Função para lidar com o envio do formulário
-  function handleSubmit(event) {
-    event.preventDefault();  // Impede o comportamento padrão do form (evita recarregar a página)
-    
-    // Exemplo de como acessar os dados do formulário
-    console.log(`Dados inseridos: \nNome: ${pacient} \nMotivo: ${motivo} \nTelefone: ${number} \nHora: ${hour} \nData: ${day}`);
-    alert(`Dados inseridos: \nNome: ${pacient} \nMotivo: ${motivo} \nTelefone: ${number} \nHora: ${hour} \nData: ${day}`);
-    
-    // Limpa os campos após envio (opcional)
-    setPacient('');
-    setMotivo('');
-    setNumber('');
-    setHour('');
-    setDay('');
-  }
+  
 
   return (
     <div className="App2">
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={enviarDados}>
         <h1 id='01' className="flex flex-row justify-center text-blue-600 text-5xl">
           Agendamento de consultas
         </h1>
@@ -50,6 +71,7 @@ function App() {
           <p>\!/</p>
 
           <input
+            id='motivo'
             type='text'
             className='bg-blue-600 text-gray-900 text-2xl'
             placeholder='Motivo da consulta:'

@@ -1,0 +1,23 @@
+[
+  {
+    "nome": "Alex",
+    "telefone": "3798540631",
+    "hora": "09:30",
+    "data": "2024-11-29",
+    "descrição": "Febre"
+  },
+  {
+    "nome": "Hugo",
+    "telefone": "37985642315",
+    "hora": "21:21",
+    "data": "2011-09-11",
+    "descrição": "AIDS"
+  },
+  {
+    "nome": "Gabriel",
+    "telefone": "5464562345",
+    "hora": "21:24",
+    "data": "2024-11-06",
+    "descrição": "gonorréia"
+  }
+]
